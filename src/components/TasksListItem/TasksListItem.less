@@ -1,0 +1,33 @@
+.TasksListItem {
+   padding: 8px;
+   margin: 8px;
+   border: 1px solid #000;
+   display: flex;
+   
+   &__showed {
+      background-color: #ccc;
+   }
+
+   &_date {
+      width: 10%;
+      display: flex;
+      align-items: center;
+   }
+
+   &_title {
+      font-size: 19px;
+   }
+
+   &_description {
+      font-size: 16px;
+      color: #bbb;
+   }
+
+   &:hover {
+      cursor: pointer;
+   }
+
+   > * + * {
+      margin-left: 16px;
+   }
+}
