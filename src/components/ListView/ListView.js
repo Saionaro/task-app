@@ -1,5 +1,7 @@
 import React from 'react';
-import {connect} from 'react-redux';
+import {
+   connect
+} from 'react-redux';
 import './ListView.less';
 
 class ListView extends React.Component {
