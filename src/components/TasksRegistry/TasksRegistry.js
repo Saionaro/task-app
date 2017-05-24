@@ -2,25 +2,54 @@ import React from 'react';
 import {
    connect
 } from 'react-redux';
+import Modal from 'react-modal';
 import './TasksRegistry.less';
 import ListView from '../ListView/ListView';
 import TextField from '../TextField/TextField';
+import TaskView from '../TaskView/TaskView';
+import PropTypes from 'prop-types';
 import TasksListItem from '../TasksListItem/TasksListItem';
-import * as actions from '../../actions';
+import * as actions from '../../actionsFactory';
 
 class TasksRegistry extends React.Component {
+
+   static propTypes = {
+      currentActiveTask: PropTypes.number,
+      modalIsOpen: PropTypes.bool
+   }
+
+   onApply = (...args) => {
+      this.props.addTask(...args);
+   };
+
+   afterOpenModal = () => {};
+
    render() {
-      return <div className='TasksRegistry'>
-         <TextField
-            placeholder="Новая таска!"
-            clearOnApply={true}
-            onApply={this.props.addTask} />
-         <ListView
-            template={TasksListItem}
-            entity='task'
-            onClick={this.props.openTask} />
-      </div>;
+      return (
+         <div className='TasksRegistry'>
+            <TextField
+               placeholder="Новая таска"
+               clearOnApply={true}
+               onApply={this.onApply} />
+            <Modal
+               isOpen={this.props.modalIsOpen}
+               onAfterOpen={this.afterOpenModal}
+               onRequestClose={this.props.closeTask}
+               contentLabel='Task card'>
+               <TaskView id={this.props.currentActiveTask} />
+            </Modal>
+            <ListView
+               template={TasksListItem}
+               entity='task'
+               onClick={this.props.openTask} />
+         </div>
+      );
    }
 }
 
-export default TasksRegistry = connect(() => ({}), actions)(TasksRegistry);
+const mapStateToProps = (state, ownProps) => ({
+   modalIsOpen: !!state.reducer.currentTask,
+   currentActiveTask: state.reducer.currentTask
+});
+
+export default TasksRegistry = connect(mapStateToProps, actions)(TasksRegistry);

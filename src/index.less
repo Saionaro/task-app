@@ -1,3 +1,20 @@
+html, body {
+   margin: 0;
+}
+
 html {
    font-family: Helvetica;
+   color: #191717;
+}
+
+.ReactModal__Overlay {
+   background-color: initial !important;
+}
+
+#app {
+   transition: filter .5s;
+}
+
+.ReactModal__Body--open #app {
+   filter: blur(4px);
 }

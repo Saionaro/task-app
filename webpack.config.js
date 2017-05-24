@@ -46,8 +46,11 @@ module.exports = {
       }, {
          test: /\.less$/,
          loader: ExtractTextPlugin.extract({
-            use: 'css-loader!autoprefixer-loader?browsers=last 3 versions!less-loader'
+            use: 'css-loader!autoprefixer-loader?browsers=last 6 versions!less-loader'
          })
+      }, {
+         test: /\.(png|jpg|svg)$/,
+         loader: 'url-loader?name=[path][name].[ext]&limit=2048'
       }]
    }
 };

@@ -1,0 +1,1 @@
+export const taskListFormat = 'D.MM.YY HH:mm';
