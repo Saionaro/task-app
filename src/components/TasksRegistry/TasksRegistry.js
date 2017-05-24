@@ -1,17 +1,19 @@
-import React from 'react';
+import React, {
+   Component
+} from 'react';
 import {
    connect
 } from 'react-redux';
 import Modal from 'react-modal';
-import './TasksRegistry.less';
 import ListView from '../ListView/ListView';
 import TextField from '../TextField/TextField';
 import TaskView from '../TaskView/TaskView';
 import PropTypes from 'prop-types';
 import TasksListItem from '../TasksListItem/TasksListItem';
 import * as actions from '../../actionsFactory';
+import './TasksRegistry.less';
 
-class TasksRegistry extends React.Component {
+class TasksRegistry extends Component {
 
    static propTypes = {
       currentActiveTask: PropTypes.number,
@@ -28,7 +30,7 @@ class TasksRegistry extends React.Component {
       return (
          <div className='TasksRegistry'>
             <TextField
-               placeholder="Новая таска"
+               placeholder='Новая таска'
                clearOnApply={true}
                onApply={this.onApply} />
             <Modal

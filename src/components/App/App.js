@@ -4,6 +4,7 @@ import {
    Route
 } from 'react-router-dom';
 import TasksRegistry from '../TasksRegistry/TasksRegistry';
+import ProjectsRegistry from '../ProjectsRegistry/ProjectsRegistry';
 import UserProfile from '../UserProfile/UserProfile';
 import './app.less';
 
@@ -16,11 +17,13 @@ class App extends React.Component {
                <div className='app_title'>Tasks app</div>
                <div className='app_links'>
                   <Link to='tasks'>Задачи</Link>
+                  <Link to='projects'>Проекты</Link>
                   <Link to='profile'>Профиль</Link>
                   <Link to='logout'>Выход</Link>
                </div>
             </div>
             <div className='app_body'>
+               <Route path="/projects" component={ProjectsRegistry} />
                <Route path="/tasks" component={TasksRegistry} />
                <Route path="/profile" component={UserProfile} />
             </div>

@@ -24,8 +24,7 @@ module.exports = {
          index: 'index.html'
       }
    },
-   // watch: NODE_ENV === 'development',
-   watch: true,
+   watch: NODE_ENV === 'development',
    devtool: NODE_ENV === 'development' ? 'sheap-inline-module-source-map' : false,
    plugins: [
       new ExtractTextPlugin({

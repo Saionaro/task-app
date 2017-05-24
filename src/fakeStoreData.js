@@ -89,6 +89,7 @@ const usersStore = {
 
 export default {
    tasksList: [1, 2, 3],
+   projectsList: [1, 2],
    currentUser: 0,
    tasksStore: tasksStore,
    projectsStore: projectsStore,
