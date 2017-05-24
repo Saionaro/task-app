@@ -1,3 +1,5 @@
+import Moment from 'moment';
+
 function setState(state, newState) {
    return newState;
 }
@@ -9,8 +11,9 @@ function addTask(state, descr) {
       id: id,
       title: descr,
       description: descr,
-      date: '01.05.16 15:54',
+      createDate: new Moment(),
       showed: false,
+      executor: newState.currentUser
    };
    newState.tasksList.push(id);
    return newState;
@@ -22,16 +25,28 @@ function setShowed(state, id) {
    return newState;
 }
 
+function openTask(state, id) {
+   let newState = Object.assign({}, state);
+   newState.currentTask = id;
+   return newState;
+}
+
+function closeTask(state) {
+   let newState = Object.assign({}, state);
+   newState.currentTask = null;
+   return newState;
+}
+
 export default function(state = {}, action) {
    switch (action.type) {
       case 'SET_STATE':
          return setState(state, action.state);
       case 'OPEN_TASK':
-         return setShowed(state, action.id);
+         return openTask(setShowed(state, action.id), action.id);
+      case 'CLOSE_TASK':
+         return closeTask(state);
       case 'ADD_TASK':
          return addTask(state, action.desc);
-      case 'CLOSE_TASK':
-         return state;
       default:
          return state;
    }

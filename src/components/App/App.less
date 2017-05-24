@@ -1,0 +1,26 @@
+.app {
+   &_head {
+      height: 60px;
+      border: 1px solid #bbb;
+      padding: 0 20px;
+      background-color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+   }
+   &_title {
+      font-size: 24px;
+   }
+   &_links {
+      & > * + * {
+         margin-left: 16px;
+      }
+   }
+   &_body {
+      display: flex;
+      > * {
+         margin: auto;
+         max-height: calc(~'100vh - 62px');
+      }
+   }
+}

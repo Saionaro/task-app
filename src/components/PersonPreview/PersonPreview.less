@@ -1,0 +1,21 @@
+.PersonPreview {
+   display: inline-flex;
+   align-items: center;
+   &_photo {
+      height: 40px;
+      width: 40px;
+   }
+   &_data {
+      margin-left: 4px;
+   }
+   &_name {
+
+   }
+   &_name + &_nickname {
+      color: #a7a3a3;
+      align-self: center;
+   }
+   &:hover {
+      cursor: pointer;
+   }
+}
