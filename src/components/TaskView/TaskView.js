@@ -5,6 +5,7 @@ import {
    connect
 } from 'react-redux';
 import PropTypes from 'prop-types';
+import TimeView from '../TimeView/TimeView';
 import PersonPreview from '../PersonPreview/PersonPreview';
 import ProjectMiniCard from '../ProjectMiniCard/ProjectMiniCard';
 import {
@@ -17,7 +18,7 @@ class TaskView extends Component {
    static propTypes = {
       id: PropTypes.number.isRequired,
       description: PropTypes.string,
-      createDate: PropTypes.string,
+      createDate: PropTypes.object,
       executor: PropTypes.number,
       project: PropTypes.number
    }
@@ -25,18 +26,25 @@ class TaskView extends Component {
    render() {
       return (
          <div className="TaskView">
-            <div className="TaskView_head" title={this.props.createDate}>{this.props.createDate}</div>
+            <div className="TaskView_head">
+               <div className='TaskView_time'>
+                  <TimeView
+                     moment={this.props.createDate}
+                     format={taskListFormat} />
+               </div>
+            </div>
             <div className="TaskView_body">
                <PersonPreview
                   id={this.props.executor} />
                <div className='TaskView_project-area'>
-               {
-                  this.props.project ? 
+                  {this.props.project ? 
                      <ProjectMiniCard 
                         id={this.props.project} />
                   :
-                  <div className='TaskView_project-area__empty' title='Задача не включена в проект'>Без проекта</div>
-               }
+                  <div className='TaskView_project-area__empty'
+                     title='Задача не включена в проект'>
+                     Без проекта
+                  </div>}
                </div>
                <div className="TaskView_description" title={this.props.description}>{this.props.description}</div>
             </div>
@@ -47,7 +55,7 @@ class TaskView extends Component {
 
 const mapStateToProps = (state, ownProps) => ({
    description: state.reducer.tasksStore[ownProps.id].description,
-   createDate: state.reducer.tasksStore[ownProps.id].createDate.format(taskListFormat),
+   createDate: state.reducer.tasksStore[ownProps.id].createDate,
    executor: state.reducer.tasksStore[ownProps.id].executor,
    author: state.reducer.tasksStore[ownProps.id].author,
    project: state.reducer.tasksStore[ownProps.id].project

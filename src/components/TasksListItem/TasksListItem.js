@@ -8,6 +8,7 @@ import PropTypes from 'prop-types';
 import {
    taskListFormat
 } from '../../constants/dateFormats';
+import TimeView from '../TimeView/TimeView';
 import './TasksListItem.less';
 
 class TasksListItem extends Component {
@@ -16,7 +17,7 @@ class TasksListItem extends Component {
       id: PropTypes.number.isRequired,
       description: PropTypes.string,
       title: PropTypes.string,
-      createDate: PropTypes.string
+      createDate: PropTypes.object
    }
 
    render() {
@@ -27,7 +28,9 @@ class TasksListItem extends Component {
                className={'TasksListItem_status icon-16 icon-eye' + (!this.props.showed ? ' TasksListItem_status__visible' : '')}>
             </div>
             <div className='TasksListItem_date'>
-               {this.props.createDate}
+               <TimeView
+                  moment={this.props.createDate}
+                  format={taskListFormat} />
             </div>
             <div className='TasksListItem_main-info'>
                <div className='TasksListItem_title'>
@@ -44,7 +47,7 @@ class TasksListItem extends Component {
 
 const mapStateToProps = (state, ownState) => ({
    showed: state.reducer.tasksStore[ownState.id].showed,
-   createDate: state.reducer.tasksStore[ownState.id].createDate.format(taskListFormat),
+   createDate: state.reducer.tasksStore[ownState.id].createDate,
    title: state.reducer.tasksStore[ownState.id].title,
    description: state.reducer.tasksStore[ownState.id].description
 });
