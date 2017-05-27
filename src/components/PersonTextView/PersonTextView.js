@@ -17,7 +17,7 @@ class PersonTextView extends Component {
 
    getTitle() {
       return `${this.props.name} @${this.props.nickname}`;
-   }
+   };
 
    render() {
       return (
@@ -27,8 +27,8 @@ class PersonTextView extends Component {
 }
 
 const mapStateToProps = (state, ownProps) => ({
-   name: state.reducer.usersStore[ownProps.id].name,
-   nickname: state.reducer.usersStore[ownProps.id].nickname
+   name: state.user.usersStore[ownProps.id].name,
+   nickname: state.user.usersStore[ownProps.id].nickname
 });
 
 export default PersonTextView = connect(mapStateToProps)(PersonTextView);

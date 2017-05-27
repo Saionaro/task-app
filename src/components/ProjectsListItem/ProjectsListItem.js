@@ -12,48 +12,37 @@ import TimeView from '../TimeView/TimeView';
 import PersonPreview from '../PersonPreview/PersonPreview';
 import './ProjectsListItem.less';
 
-class ProjectsListItem extends Component {
+export default class ProjectsListItem extends Component {
 
    static propTypes = {
-      id: PropTypes.number.isRequired,
-      description: PropTypes.string,
-      title: PropTypes.string,
-      createDate: PropTypes.object,
-      author: PropTypes.number
+      data: PropTypes.object.isRequired
    };
 
    render() {
       return (
          <div className='ProjectsListItem'
-            onClick={() => this.props.onClick(this.props.id)}>
+            onClick={() => this.props.onClick(this.props.data.id)}>
             <div className='ProjectsListItem_date'>
                <TimeView
-                  moment={this.props.createDate}
+                  moment={this.props.data.createDate}
                   format={taskListFormat} />
             </div>
             <div className='ProjectsListItem_main-info'>
-               <div className='ProjectsListItem_title'>
-                  {this.props.title}
+               <div className='ProjectsListItem_title'
+                  title={this.props.data.title}>
+                  {this.props.data.title}
                </div>
-               <div className='ProjectsListItem_description'>
-                  {this.props.description}
+               <div className='ProjectsListItem_description'
+                  title={this.props.data.description}>
+                  {this.props.data.description}
                </div>
             </div>
             <div className='ProjectsListItem_author'>
                <PersonPreview
-                  id={this.props.author}
+                  id={this.props.data.author}
                   maxWidth={200} />
             </div>
          </div>
       );
    }
 }
-
-const mapStateToProps = (state, ownState) => ({
-   createDate: state.reducer.projectsStore[ownState.id].createDate,
-   title: state.reducer.projectsStore[ownState.id].title,
-   description: state.reducer.projectsStore[ownState.id].description,
-   author: state.reducer.projectsStore[ownState.id].author
-});
-
-export default ProjectsListItem = connect(mapStateToProps)(ProjectsListItem);

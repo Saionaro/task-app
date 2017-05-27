@@ -7,14 +7,24 @@ html {
    color: #191717;
 }
 
-.ReactModal__Overlay {
-   background-color: initial !important;
-}
-
 #app {
    transition: filter .3s;
 }
 
-.ReactModal__Body--open #app {
-   filter: blur(4px);
+.ReactModal {
+   &__Overlay {
+      background-color: initial !important;
+      display: flex;
+   }
+   &__Body--open {
+      & #app {
+         filter: blur(4px);
+      }
+   }
+}
+
+.text-shortcut {
+   text-overflow: ellipsis;
+   overflow: hidden;
+   white-space: nowrap;
 }

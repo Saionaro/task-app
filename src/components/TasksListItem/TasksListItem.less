@@ -1,28 +1,35 @@
+@import url('../../index.less');
+
 .TasksListItem {
-   padding: 8px;
-   margin: 8px;
+   padding: 2vh 2vw;
+   margin: 1vh 2vw;
    border: 1px solid #bbb;
    display: flex;
    position: relative;
    border-radius: 4px;
-
+   transition: background-color .25s;
+   box-shadow: 0 0 3px #bbb;
+   
    &_status {
       position: absolute;
    }
-
    &_date {
-      width: 10%;
+      width: 8vw;
       display: flex;
       align-items: center;
+      .text-shortcut;
    }
-
+   &_main-info {
+      max-width: calc(~'100% - 11vw');
+   }
    &_title {
       font-size: 19px;
+      .text-shortcut;
    }
-
    &_description {
       font-size: 16px;
       color: #bbb;
+      .text-shortcut;
    }
    &_status {
       opacity: 0;
@@ -33,9 +40,9 @@
    }
    &:hover {
       cursor: pointer;
+      background-color: #DDE0D8;
    }
-
    > * + * {
-      margin-left: 25px;
+      margin-left: 2vw;
    }
 }

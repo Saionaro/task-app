@@ -14,6 +14,8 @@ import './ProjectsRegistry.less';
 class ProjectsRegistry extends Component {
 
    static propTypes = {
+      projectsList: PropTypes.array,
+      projectsCount: PropTypes.number
    }
 
    render() {
@@ -21,13 +23,17 @@ class ProjectsRegistry extends Component {
          <div className='ProjectsRegistry'>
             <ListView
                template={ProjectsListItem}
-               entity='project'
+               list={this.props.projectsList}
+               emptyData='У вас нет проектов'
                onClick={this.props.openProject} />
          </div>
       );
    }
 }
 
-const mapStateToProps = (state, ownProps) => ({});
+const mapStateToProps = (state, ownProps) => ({
+   projectsList: state.project.projectsList.map(id => state.project.projectsStore[id]),
+   projectsCount: state.project.projectsList.length
+});
 
 export default ProjectsRegistry = connect(mapStateToProps, actions)(ProjectsRegistry);

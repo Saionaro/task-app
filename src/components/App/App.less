@@ -1,26 +1,38 @@
-.app {
+.App {
    &_head {
-      height: 60px;
-      border: 1px solid #bbb;
+      height: 8vh;
+      background-color: #309FA1;
       padding: 0 20px;
-      background-color: #fff;
       display: flex;
       align-items: center;
       justify-content: space-between;
+      box-shadow: 0 0 6px #000;
    }
    &_title {
       font-size: 24px;
+      color: #fff;
    }
    &_links {
       & > * + * {
          margin-left: 16px;
+      }
+      a {
+         text-decoration: none;
+         color: #fff;
+         transition: color .25s;
+      }
+      a:visited {
+         color: #fff;
+      }
+      a:hover {
+         color: #D86854;
       }
    }
    &_body {
       display: flex;
       > * {
          margin: auto;
-         max-height: calc(~'100vh - 62px');
+         max-height: calc(~'92vh - 2px');
       }
    }
 }

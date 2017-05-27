@@ -4,10 +4,8 @@ import React, {
 import {
    connect
 } from 'react-redux';
-import Modal from 'react-modal';
 import ListView from '../ListView/ListView';
 import TextField from '../TextField/TextField';
-import TaskView from '../TaskView/TaskView';
 import PropTypes from 'prop-types';
 import TasksListItem from '../TasksListItem/TasksListItem';
 import * as actions from '../../actionsFactory';
@@ -16,15 +14,13 @@ import './TasksRegistry.less';
 class TasksRegistry extends Component {
 
    static propTypes = {
-      currentActiveTask: PropTypes.number,
-      modalIsOpen: PropTypes.bool
+      tasksList: PropTypes.array,
+      tasksCount: PropTypes.number
    }
 
    onApply = (...args) => {
       this.props.addTask(...args);
    };
-
-   afterOpenModal = () => {};
 
    render() {
       return (
@@ -33,16 +29,10 @@ class TasksRegistry extends Component {
                placeholder='Новая таска'
                clearOnApply={true}
                onApply={this.onApply} />
-            <Modal
-               isOpen={this.props.modalIsOpen}
-               onAfterOpen={this.afterOpenModal}
-               onRequestClose={this.props.closeTask}
-               contentLabel='Task card'>
-               <TaskView id={this.props.currentActiveTask} />
-            </Modal>
             <ListView
                template={TasksListItem}
-               entity='task'
+               list={this.props.tasksList}
+               emptyData='У вас нет задач'
                onClick={this.props.openTask} />
          </div>
       );
@@ -50,8 +40,10 @@ class TasksRegistry extends Component {
 }
 
 const mapStateToProps = (state, ownProps) => ({
-   modalIsOpen: !!state.reducer.currentTask,
-   currentActiveTask: state.reducer.currentTask
+   modalIsOpen: !!state.task.currentTask,
+   currentActiveTask: state.task.currentTask,
+   tasksList: state.task.tasksList.map(id => state.task.tasksStore[id]),
+   tasksCount: state.task.tasksList.length
 });
 
 export default TasksRegistry = connect(mapStateToProps, actions)(TasksRegistry);

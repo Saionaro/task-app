@@ -11,8 +11,9 @@ import './PersonPreview.less';
 class PersonPreview extends Component {
 
    static propTypes = {
-      id: PropTypes.number.isRequired,
+      id: PropTypes.number,
       name: PropTypes.string,
+      data: PropTypes.object,
       nickname: PropTypes.string.isRequired,
       maxWidth: PropTypes.number
    };
@@ -58,10 +59,12 @@ class PersonPreview extends Component {
    }
 }
 
-const mapStateToProps = (state, ownProps) => ({
-   description: state.reducer.usersStore[ownProps.id].description,
-   name: state.reducer.usersStore[ownProps.id].name,
-   nickname: state.reducer.usersStore[ownProps.id].nickname
-});
+const mapStateToProps = (state, ownProps) => {
+   const id = ownProps.id || ownProps.data.id;
+   return {
+      name: state.user.usersStore[id].name,
+      nickname: state.user.usersStore[id].nickname
+   }
+};
 
 export default PersonPreview = connect(mapStateToProps)(PersonPreview);
