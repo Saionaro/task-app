@@ -11,45 +11,35 @@ import {
 import TimeView from '../TimeView/TimeView';
 import './TasksListItem.less';
 
-class TasksListItem extends Component {
+export default class TasksListItem extends Component {
 
    static propTypes = {
-      id: PropTypes.number.isRequired,
-      description: PropTypes.string,
-      title: PropTypes.string,
-      createDate: PropTypes.object
-   }
+      data: PropTypes.object.isRequired
+   };
 
    render() {
       return (
          <div className='TasksListItem'
-            onClick={() => this.props.onClick(this.props.id)}>
+            onClick={() => this.props.onClick(this.props.data.id)}>
             <div title='Не прочитано'
-               className={'TasksListItem_status icon-16 icon-eye' + (!this.props.showed ? ' TasksListItem_status__visible' : '')}>
+               className={'TasksListItem_status icon-16 icon-eye' + (!this.props.data.showed ? ' TasksListItem_status__visible' : '')}>
             </div>
             <div className='TasksListItem_date'>
                <TimeView
-                  moment={this.props.createDate}
+                  moment={this.props.data.createDate}
                   format={taskListFormat} />
             </div>
             <div className='TasksListItem_main-info'>
-               <div className='TasksListItem_title'>
-                  {this.props.title}
+               <div className='TasksListItem_title'
+                  title={this.props.data.title}>
+                  {this.props.data.title}
                </div>
-               <div className='TasksListItem_description'>
-                  {this.props.description}
+               <div className='TasksListItem_description'
+                  title={this.props.data.description}>
+                  {this.props.data.description}
                </div>
             </div>
          </div>
       );
    }
 }
-
-const mapStateToProps = (state, ownState) => ({
-   showed: state.reducer.tasksStore[ownState.id].showed,
-   createDate: state.reducer.tasksStore[ownState.id].createDate,
-   title: state.reducer.tasksStore[ownState.id].title,
-   description: state.reducer.tasksStore[ownState.id].description
-});
-
-export default TasksListItem = connect(mapStateToProps)(TasksListItem);

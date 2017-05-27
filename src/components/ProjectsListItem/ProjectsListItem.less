@@ -1,13 +1,32 @@
+@import url('../../index.less');
+
 .ProjectsListItem {
-   padding: 8px;
-   margin: 8px;
+   padding: 2vh 2vw;
+   margin: 1vh 2vw;
    border: 1px solid #bbb;
    display: flex;
    justify-content: space-between;
    position: relative;
    border-radius: 4px;
+   transition: background-color .25s;
+   box-shadow: 0 0 3px #bbb;
 
+   &_date, &_date .TimeView {
+      display: flex;
+      align-items: center;
+      width: 10vw;
+      .text-shortcut;
+   }
    &_author {
       width: 200px;
+      height: 40px;
+   }
+   &_title, &_description {
+      max-width: 36vw;
+      .text-shortcut;
+   }
+   &:hover {
+      cursor: pointer;
+      background-color: #DDE0D8;
    }
 }

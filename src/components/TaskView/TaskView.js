@@ -54,11 +54,11 @@ class TaskView extends Component {
 }
 
 const mapStateToProps = (state, ownProps) => ({
-   description: state.reducer.tasksStore[ownProps.id].description,
-   createDate: state.reducer.tasksStore[ownProps.id].createDate,
-   executor: state.reducer.tasksStore[ownProps.id].executor,
-   author: state.reducer.tasksStore[ownProps.id].author,
-   project: state.reducer.tasksStore[ownProps.id].project
+   description: state.task.tasksStore[ownProps.id].description,
+   createDate: state.task.tasksStore[ownProps.id].createDate,
+   executor: state.task.tasksStore[ownProps.id].executor,
+   author: state.task.tasksStore[ownProps.id].author,
+   project: state.task.tasksStore[ownProps.id].project
 });
 
 export default TaskView = connect(mapStateToProps)(TaskView);

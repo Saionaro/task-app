@@ -1,35 +1,37 @@
-import React from 'react';
+import React, {
+   Component
+} from 'react';
 import {
    Link,
    Route
 } from 'react-router-dom';
 import TasksRegistry from '../TasksRegistry/TasksRegistry';
 import ProjectsRegistry from '../ProjectsRegistry/ProjectsRegistry';
+import ModalsManager from '../ModalsManager/ModalsManager';
 import UserProfile from '../UserProfile/UserProfile';
-import './app.less';
+import './App.less';
 
-class App extends React.Component {
+export default class App extends Component {
 
    render() {
       return (
-         <div className='app'>
-            <div className='app_head'>
-               <div className='app_title'>Tasks app</div>
-               <div className='app_links'>
+         <div className='App'>
+            <div className='App_head'>
+               <div className='App_title'>Tasks App</div>
+               <div className='App_links'>
                   <Link to='tasks'>Задачи</Link>
                   <Link to='projects'>Проекты</Link>
                   <Link to='profile'>Профиль</Link>
                   <Link to='logout'>Выход</Link>
                </div>
             </div>
-            <div className='app_body'>
+            <div className='App_body'>
                <Route path="/projects" component={ProjectsRegistry} />
                <Route path="/tasks" component={TasksRegistry} />
                <Route path="/profile" component={UserProfile} />
             </div>
+            <ModalsManager />
          </div>
       );
    }
-};
-
-export default App;
+}

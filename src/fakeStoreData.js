@@ -29,7 +29,7 @@ const tasksStore = {
       showed: false,
       executor: 1233,
       author: 1232,
-      project: null
+      project: 1
    }
 };
 
@@ -41,7 +41,7 @@ const projectsStore = {
       createDate: new Moment().subtract(21, 'days'),
       author: 1232,
       team: [0, 122, 1232],
-      tasks: [1]
+      tasks: [1, 3]
    },
    2: {
       id: 2,
@@ -88,11 +88,20 @@ const usersStore = {
 };
 
 export default {
-   tasksList: [1, 2, 3],
-   projectsList: [1, 2],
-   currentUser: 0,
-   tasksStore: tasksStore,
-   projectsStore: projectsStore,
-   usersStore: usersStore,
-   currentTask: null
+   modal: {
+      active: {},
+      currentTask: null
+   },
+   task: {
+      tasksList: [1, 2, 3],
+      tasksStore: tasksStore
+   },
+   user: {
+      usersStore: usersStore,
+      currentUser: 0
+   },
+   project: {
+      projectsList: [1, 2],
+      projectsStore: projectsStore
+   }
 };

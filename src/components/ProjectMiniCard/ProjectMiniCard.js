@@ -38,10 +38,10 @@ class ProjectMiniCard extends Component {
 }
 
 const mapStateToProps = (state, ownProps) => ({
-   description: state.reducer.projectsStore[ownProps.id].description,
-   title: state.reducer.projectsStore[ownProps.id].title,
-   createDate: state.reducer.projectsStore[ownProps.id].createDate.format(taskListFormat),
-   author: state.reducer.projectsStore[ownProps.id].author
+   description: state.project.projectsStore[ownProps.id].description,
+   title: state.project.projectsStore[ownProps.id].title,
+   createDate: state.project.projectsStore[ownProps.id].createDate.format(taskListFormat),
+   author: state.project.projectsStore[ownProps.id].author
 });
 
 export default ProjectMiniCard = connect(mapStateToProps)(ProjectMiniCard);

@@ -1,39 +1,39 @@
 import React, {
    Component
 } from 'react';
-import {
-   connect
-} from 'react-redux';
 import PropTypes from 'prop-types';
 import './ListView.less';
 
-class ListView extends Component {
+export default class ListView extends Component {
 
    static propTypes = {
-      entity: PropTypes.string.isRequired,
-      template: PropTypes.func.isRequired
+      template: PropTypes.func.isRequired,
+      list: PropTypes.array,
+      emptyData: PropTypes.string
    };
 
    static defaultProps = {
-      list: []
+      list: [],
+      emptyData: 'Нет данных'
    };
 
    render() {
       return (
          <div className='ListView'>
-            {this.props.list.map(id =>
-               <div className='ListView_item' key={id}>
-                  <this.props.template id={id} onClick={this.props.onClick} />
+            {this.props.list.length ?
+               this.props.list.map(item =>
+                  <div className='ListView_item' key={item.id}>
+                     <this.props.template
+                        id={item.id}
+                        data={item}
+                        onClick={this.props.onClick} />
+                  </div>)
+               :
+               <div className='ListView_empty-data'
+                  title={this.props.emptyData}>{this.props.emptyData}
                </div>
-            )}
+            }
          </div>
       );
    }
 }
-
-const mapStateToProps = (state, ownProps) => ({
-   list: state.reducer[`${ownProps.entity}sList`],
-   count: state.reducer[`${ownProps.entity}sList`].length
-});
-
-export default ListView = connect(mapStateToProps)(ListView);
