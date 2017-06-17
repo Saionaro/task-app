@@ -1,18 +1,27 @@
 .ProjectMiniCard {
    display: inline-flex;
    flex-direction: column;
+
    &_title {
       display: flex;
       height: 30px;
+
       & > * + * {
          margin-left: 8px;
+      }
+      &-value {
+         max-width: 150px;
       }
    }
    &_creator {
       display: flex;
       height: 30px;
+
       & > * + * {
          margin-left: 8px;
+      }
+      &-value {
+         max-width: 150px;
       }
    }
 }

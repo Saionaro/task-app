@@ -3,32 +3,38 @@ import Moment from 'moment';
 const tasksStore = {
    1: {
       id: 1,
-      title: 'Задача из славного города Ярославль',
-      description: 'Делаем задание из славного города Ярославль',
-      createDate: new Moment().subtract(7, 'days'),
+      title: 'Макет обложки',
+      description: 'Разработай макет обложки номера за май 2017 года. Я думаю стоит поставить в фокус прошедшую конференцию.',
+      createDate: new Moment().subtract(1, 'days'),
       showed: false,
       executor: 123,
       author: 1232,
+      executionDate: new Moment(),
+      executionText: 'Готово, можешь смотреть',
       project: 1
    }, 
    2: {
       id: 2,
-      title: 'Задача из славного города Северогорск',
-      description: 'Делаем задание из славного города Северогорск',
+      title: 'Статья о новых возможностях JS',
+      description: 'Несомннено нужно подробно рассмотреть такие механизмы, как async/await и нативный import/export. В остальном - полагаюсь на тебя и твой профессионализм.',
       createDate: new Moment().subtract(2, 'days'),
       showed: false,
       executor: 1233,
       author: 122,
+      executionDate: null,
+      executionText: null,
       project: 2
    },
    3: {
       id: 3,
-      title: 'Задача из славного города Москва',
-      description: 'Делаем задачечку из славного города МосквЭ',
-      createDate: new Moment().subtract(1, 'days'),
+      title: 'Заметка о реализации БЭМ-методологии в Яндексе',
+      description: 'Сабж. Подробно все распиши и вставь большие-красивые картинки. Расположим в середине номера.',
+      createDate: new Moment().subtract(3, 'days'),
       showed: false,
       executor: 1233,
       author: 1232,
+      executionDate: null,
+      executionText: null,
       project: 1
    }
 };
@@ -36,18 +42,20 @@ const tasksStore = {
 const projectsStore = {
    1: {
       id: 1,
-      title: 'Первый проект',
-      description: 'Описание первого проекта - какой он крутой и вообще самый классный',
+      title: 'Выпуск майского номера',
+      description: 'Очередной выпуск нашего журнала - "Современный  JavaScript и методы рационального мышления"! Предстоит много работы.',
       createDate: new Moment().subtract(21, 'days'),
+      executionDate: null,
       author: 1232,
       team: [0, 122, 1232],
       tasks: [1, 3]
    },
    2: {
       id: 2,
-      title: 'Второй проект',
-      description: 'Описание второго проекта - он конечно крутой, но не настолько, как превый',
+      title: 'Планируем июньский номер',
+      description: 'Заранее создал проектик, чтобы агрегировать задачи для июньского номера',
       createDate: new Moment().subtract(42, 'days'),
+      executionDate: null,
       author: 122,
       team: [0, 122],
       tasks: [2]
@@ -89,8 +97,7 @@ const usersStore = {
 
 export default {
    modal: {
-      active: {},
-      currentTask: null
+      active: {}
    },
    task: {
       tasksList: [1, 2, 3],
@@ -98,7 +105,8 @@ export default {
    },
    user: {
       usersStore: usersStore,
-      currentUser: 0
+      currentUser: 0,
+      choosers: {}
    },
    project: {
       projectsList: [1, 2],

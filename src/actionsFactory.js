@@ -10,7 +10,7 @@ export function openProject(id) {
          }
       });
    };
-}
+};
 
 export function closeProject(id) {
    return dispatch => {
@@ -46,4 +46,20 @@ export function closeModal(id) {
 
 export function addTask(desc) {
    return {type: actionsLib.ADD_TASK, desc};
+};
+
+export function searchUser(chooserId, text) {
+   return dispatch => {
+      dispatch({
+         type: actionsLib.SEARCH_USER_PENDING,
+         id: chooserId
+      });
+      setTimeout(_ => {
+         dispatch({
+            type: actionsLib.SEARCH_USER,
+            id: chooserId,
+            text: text
+         });
+      }, 2000);
+   };
 };

@@ -70,7 +70,18 @@ const mapStateToProps = (state, ownProps) => ({
    createDate: state.project.projectsStore[ownProps.id].createDate,
    author: state.project.projectsStore[ownProps.id].author,
    project: state.project.projectsStore[ownProps.id].project,
-   tasksList: state.project.projectsStore[ownProps.id].tasks.map(id => state.task.tasksStore[id]),
+   tasksList: state.project.projectsStore[ownProps.id].tasks
+                           .map(id => state.task.tasksStore[id])
+                           .sort((fst, scd) => {
+                              if(fst.executionDate && scd.executionDate) {
+                                 return 0;
+                              }
+                              if(fst.executionDate) {
+                                 return 1;
+                              } else {
+                                 return -1;
+                              }
+                           }),
    teamList: state.project.projectsStore[ownProps.id].team.map(id => ({id}))
 });
 

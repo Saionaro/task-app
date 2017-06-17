@@ -26,7 +26,7 @@ class TasksRegistry extends Component {
       return (
          <div className='TasksRegistry'>
             <TextField
-               placeholder='Новая таска'
+               placeholder='Новая задача'
                clearOnApply={true}
                onApply={this.onApply} />
             <ListView
@@ -40,9 +40,10 @@ class TasksRegistry extends Component {
 }
 
 const mapStateToProps = (state, ownProps) => ({
-   modalIsOpen: !!state.task.currentTask,
    currentActiveTask: state.task.currentTask,
-   tasksList: state.task.tasksList.map(id => state.task.tasksStore[id]),
+   tasksList: state.task.tasksList
+                  .map(id => state.task.tasksStore[id])
+                  .filter(task => !task.executionDate && task.executor === state.user.currentUser),
    tasksCount: state.task.tasksList.length
 });
 

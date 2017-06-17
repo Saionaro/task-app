@@ -1,15 +1,32 @@
 @import url('../../index.less');
 
 .TasksListItem {
-   padding: 2vh 2vw;
-   margin: 1vh 2vw;
+   padding: @base-whitespace 2vw;
+   margin: @base-whitespace 2vw;
    border: 1px solid #bbb;
    display: flex;
    position: relative;
    border-radius: 4px;
    transition: background-color .25s;
-   box-shadow: 0 0 3px #bbb;
+   box-shadow: 0 0 3px @light-hover;
    
+   &:hover {
+      cursor: pointer;
+      box-shadow: 0 0 6px darken(@light-hover, 50%);
+   }
+   &__done {
+      color: @done-color;
+
+      &:hover {
+         box-shadow: 0 0 6px @done-color;
+      }
+      &,
+      &:hover {
+         .TasksListItem_description {
+            color: @done-color;
+         }
+      }
+   }
    &_status {
       position: absolute;
    }
@@ -29,18 +46,16 @@
    &_description {
       font-size: 16px;
       color: #bbb;
+
       .text-shortcut;
    }
    &_status {
       opacity: 0;
       align-self: center;
+
       &__visible {
          opacity: 1;
       }
-   }
-   &:hover {
-      cursor: pointer;
-      background-color: #DDE0D8;
    }
    > * + * {
       margin-left: 2vw;

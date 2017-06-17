@@ -1,6 +1,9 @@
+@import url('../../index.less');
+
 .ProjectView {
    height: 70vh;
    width: 80vw;
+
    &_head {
 
    }
@@ -18,20 +21,20 @@
 
    }
    &_tasks {
-      width: 70vw;
+      width: 70%;
       .ListView {
-         padding-top: 2vh;
+         padding-top: @base-whitespace;
       }
    }
    &_team {
-      padding-top: 2vh;
-      width: 30vw;
+      padding-top: @base-whitespace;
+      width: 30%;
       .ListView {
-         padding-top: 2vh;
+         padding-top: @base-whitespace;
       }
    }
    &_inline-wrapper {
-      padding-top: 4vh;
+      padding-top: @base-whitespace * 2;
       display: flex;
    }
 }

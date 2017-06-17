@@ -1,10 +1,17 @@
+@base-whitespace: 8px;
+@main-color: #308ca1;
+@main-blue: lighten(@main-color, 15%);
+@done-color: darken(spin(@main-blue, -15), 20%);
+@light-hover: lighten(@main-blue, 50%);
+@near-black: lighten(#000, 6%);
+
 html, body {
    margin: 0;
 }
 
 html {
    font-family: Helvetica;
-   color: #191717;
+   color: @near-black;
 }
 
 #app {

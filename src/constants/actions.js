@@ -6,3 +6,6 @@ export const SET_TASK_SHOWED = 'SET_TASK_SHOWED';
 /* Modals */
 export const OPEN_MODAL = 'OPEN_MODAL';
 export const CLOSE_MODAL = 'CLOSE_MODAL';
+/* Users */
+export const SEARCH_USER = 'SEARCH_USER';
+export const PERFORM_SEARCH_USER = 'SEARCH_USER_PENDING';
