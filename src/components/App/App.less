@@ -1,12 +1,14 @@
+@import url('../../index.less');
+
 .App {
    &_head {
-      height: 8vh;
-      background-color: #309FA1;
+      height: 60px;
+      background-color: @main-blue;
       padding: 0 20px;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      box-shadow: 0 0 6px #000;
+      box-shadow: 0 0 6px @main-blue;
    }
    &_title {
       font-size: 24px;
@@ -14,7 +16,7 @@
    }
    &_links {
       & > * + * {
-         margin-left: 16px;
+         margin-left: @base-whitespace * 2;
       }
       a {
          text-decoration: none;
@@ -25,7 +27,7 @@
          color: #fff;
       }
       a:hover {
-         color: #D86854;
+         text-decoration: underline;
       }
    }
    &_body {

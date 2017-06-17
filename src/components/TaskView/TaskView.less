@@ -1,4 +1,35 @@
+@import url('../../index.less');
+
 .TaskView {
    height: 60vh;
    width: 70vw;
+   
+   &_head {
+      display: flex;
+   }
+   &_done-label {
+      margin-left: @base-whitespace * 2;
+   }
+   &_body {
+      display: flex;
+      justify-content: space-between;
+      margin-top: @base-whitespace * 3;
+   }
+   &_done-label {
+      color: @done-color;
+   }
+   &_left-part {
+      flex: 1 1 auto;
+      max-width: 40vw;
+   }
+   &_executor-area {
+      margin-top: @base-whitespace * 2;
+   }
+   &_executor-label {
+      text-align: center;
+   }
+   &_right-part {
+      flex: 0 1 auto;
+      margin-left: @base-whitespace * 2;
+   }
 }

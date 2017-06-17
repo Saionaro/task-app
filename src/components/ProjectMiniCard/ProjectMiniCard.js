@@ -25,12 +25,23 @@ class ProjectMiniCard extends Component {
       return (
          <div className='ProjectMiniCard'>
             <div className='ProjectMiniCard_title'>
-               <div className='ProjectMiniCard_title-label' title='Название проекта'>Проект:</div>
-               <div className='ProjectMiniCard_title-value' title={this.props.title}>{this.props.title}</div>
+               <div className='ProjectMiniCard_title-label'
+                  title='Название проекта'>
+                  Проект:
+               </div>
+               <div className='ProjectMiniCard_title-value text-shortcut'
+                  title={this.props.title}>
+                  {this.props.title}
+               </div>
             </div>
             <div className='ProjectMiniCard_creator'>
-               <div className='ProjectMiniCard_creator-label' title='Основатель проекта'>Основатель:</div>
-               <div className='ProjectMiniCard_creator-value'><PersonTextView id={this.props.author} /></div>
+               <div className='ProjectMiniCard_creator-label'
+                  title='Основатель проекта'>
+                  Основатель:
+               </div>
+               <div className='ProjectMiniCard_creator-value text-shortcut'>
+                  <PersonTextView id={this.props.author} />
+               </div>
             </div>
          </div>
       );

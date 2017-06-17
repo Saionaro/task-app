@@ -26,8 +26,8 @@ export default class App extends Component {
                </div>
             </div>
             <div className='App_body'>
-               <Route path="/projects" component={ProjectsRegistry} />
                <Route path="/tasks" component={TasksRegistry} />
+               <Route path="/projects" component={ProjectsRegistry} />
                <Route path="/profile" component={UserProfile} />
             </div>
             <ModalsManager />

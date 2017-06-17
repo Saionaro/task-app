@@ -19,7 +19,8 @@ class PersonPreview extends Component {
    };
 
    static defaultProps = {
-      maxWidth: 200
+      maxWidth: 200,
+      data: {}
    };
 
    _getWidth(styles) {
@@ -43,15 +44,17 @@ class PersonPreview extends Component {
                   size={40} />
             </div>
             <div className='PersonPreview_data'>
-               {
-               this.props.name ?
-                  <div className='PersonPreview_name' title={this.props.name} style={ this.getStyle() }>
-                     {this.props.name}
+               {this.props.name ?
+                  <div className='PersonPreview_name'
+                     title={this.props.name}
+                     style={ this.getStyle() }>
+                        {this.props.name}
                   </div>
-               : ''
-               }
-               <div className='PersonPreview_nickname' title={'@' + this.props.nickname} style={ this.getStyle() }>
-                  {'@' + this.props.nickname}
+               : ''}
+               <div className='PersonPreview_nickname'
+                  title={'@' + this.props.nickname}
+                  style={ this.getStyle() }>
+                     {'@' + this.props.nickname}
                </div>
             </div>
          </div>
@@ -60,11 +63,11 @@ class PersonPreview extends Component {
 }
 
 const mapStateToProps = (state, ownProps) => {
-   const id = ownProps.id || ownProps.data.id;
+   const id = typeof ownProps.id === 'number' ? ownProps.id : ownProps.data.id;
    return {
       name: state.user.usersStore[id].name,
       nickname: state.user.usersStore[id].nickname
-   }
+   };
 };
 
 export default PersonPreview = connect(mapStateToProps)(PersonPreview);
