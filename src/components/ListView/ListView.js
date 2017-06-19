@@ -9,7 +9,8 @@ export default class ListView extends Component {
    static propTypes = {
       template: PropTypes.func.isRequired,
       list: PropTypes.array,
-      emptyData: PropTypes.string
+      emptyData: PropTypes.string,
+      onClick: PropTypes.func
    };
 
    static defaultProps = {

@@ -49,17 +49,29 @@ export function addTask(desc) {
 };
 
 export function searchUser(chooserId, text) {
-   return dispatch => {
+   return (dispatch, getState) => {
       dispatch({
-         type: actionsLib.SEARCH_USER_PENDING,
+         type: actionsLib.PERFORM_SEARCH_USER,
          id: chooserId
       });
       setTimeout(_ => {
+         let state = getState(),
+            userStore = state.user.usersStore,
+            filtred = text ? Object.keys(userStore).filter(id => {
+               return (userStore[id].nickname + userStore[id].name).toLowerCase().match(text.toLowerCase());
+            }) : [];
          dispatch({
             type: actionsLib.SEARCH_USER,
             id: chooserId,
-            text: text
+            persons: filtred
          });
-      }, 2000);
+      }, 555);
    };
 };
+
+export function selectUser(chooserId, userId) {
+   return {type: actionsLib.SELECT_USER,
+      userId,
+      chooserId
+   };
+}

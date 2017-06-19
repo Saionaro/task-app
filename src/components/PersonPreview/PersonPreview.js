@@ -15,7 +15,8 @@ class PersonPreview extends Component {
       name: PropTypes.string,
       data: PropTypes.object,
       nickname: PropTypes.string.isRequired,
-      maxWidth: PropTypes.number
+      maxWidth: PropTypes.number,
+      onClick: PropTypes.func
    };
 
    static defaultProps = {
@@ -37,7 +38,8 @@ class PersonPreview extends Component {
 
    render() {
       return (
-         <div className='PersonPreview'>
+         <div className='PersonPreview'
+            onClick={() => this.props.onClick && this.props.onClick(this.props.id)}>
             <div className='PersonPreview_photo'>
                <Photo
                   id={this.props.id}

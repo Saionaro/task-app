@@ -58,7 +58,7 @@ export default class TextField extends Component {
    render() {
       const additionalClass = this.state.text.length ? ' TextField_input__editing' : '';
       return (
-         <div className='TextField'>
+         <div className={`TextField ${this.props.className ? this.props.className : ''}`}>
             <input
                className={`TextField_input${additionalClass}`}
                type='text'
