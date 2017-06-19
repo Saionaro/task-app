@@ -18,7 +18,7 @@ import {
 } from 'react-router-dom';
 import App from './components/App/App';
 import rootReducer from './reducers/rootReducer';
-import fakeData from './fakeStoreData';
+import fakeData from './initialStoreData';
 import './index.less';
 
 const store = createStore(rootReducer, fakeData, applyMiddleware(thunk, createLogger()));
