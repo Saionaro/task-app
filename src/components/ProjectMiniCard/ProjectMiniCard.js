@@ -42,13 +42,6 @@ class ProjectMiniCard extends Component {
    }
 }
 
-// const mapStateToProps = (state, ownProps) => ({
-//    description: state.project.projectsStore[ownProps.id].description,
-//    title: state.project.projectsStore[ownProps.id].title,
-//    createDate: state.project.projectsStore[ownProps.id].createDate.format(taskListFormat),
-//    author: state.project.projectsStore[ownProps.id].author
-// });
-
 const mapStateToProps = (state, ownProps) => {
    const item = ownProps.data || state.project.projectsStore[ownProps.id];
    return {
