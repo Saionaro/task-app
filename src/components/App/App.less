@@ -1,4 +1,9 @@
 @import url('../../index.less');
+.selected() {
+   order: 1;
+   font-size: 20px;
+   margin-right: auto;
+}
 
 .App {
    &_head {
@@ -8,14 +13,18 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      box-shadow: 0 0 6px @main-blue;
    }
    &_title {
       font-size: 24px;
       color: #fff;
    }
    &_links {
-      & > * + * {
+      display: flex;
+      flex: 1 1 auto;
+      align-items: center;
+      height: 60px;
+
+      & > * {
          margin-left: @base-whitespace * 2;
       }
       a {
@@ -26,15 +35,41 @@
       a:visited {
          color: #fff;
       }
-      a:hover {
-         text-decoration: underline;
+   }
+   &_link {
+      &-tasks {
+         order: 2;
+      }
+      &-projects {
+         order: 3;
+      }
+      &-profile {
+         order: 4;
+      }
+      &-logout {
+         order: 5;
+      }
+   }
+   &__tasks {
+      .App_link-tasks {
+         .selected();
+      }
+   }
+   &__profile {
+      .App_link-profile {
+         .selected();
+      }
+   }
+   &__projects {
+      .App_link-projects {
+         .selected();
       }
    }
    &_body {
       display: flex;
       > * {
          margin: auto;
-         max-height: calc(~'92vh - 2px');
+         max-height: calc(~'100vh - 60px');
       }
    }
 }

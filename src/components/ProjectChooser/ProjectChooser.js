@@ -7,11 +7,11 @@ import {
 import Generator from 'random-id';
 import PropTypes from 'prop-types';
 import SuggestTextField from '../SuggestTextField/SuggestTextField';
-import PersonPreview from '../PersonPreview/PersonPreview';
+import ProjectMiniCard from '../ProjectMiniCard/ProjectMiniCard';
 import * as actions from '../../actionsFactory';
-import './PersonChooser.less';
+import './ProjectChooser.less';
 
-class PersonChooser extends Component {
+class ProjectChooser extends Component {
 
    static propTypes = {
       onSelected: PropTypes.func
@@ -25,18 +25,18 @@ class PersonChooser extends Component {
 
    render() {
       return (
-         <div className='PersonChooser'>
+         <div className='ProjectChooser'>
             <SuggestTextField
                id={this.chooserId} 
-               entityType='user'
-               search={this.props.searchUser}
-               select={this.props.selectUser}
-               clearSuggest={this.props.clearUserSuggest}
-               suggestTemplate={PersonPreview}
+               entityType='project'
+               search={this.props.searchProject}
+               select={this.props.selectProject}
+               clearSuggest={this.props.clearProjectSuggest}
+               suggestTemplate={ProjectMiniCard}
                onSelected={::this.onSelected} />
          </div>
       );
    }
 }
 
-export default PersonChooser = connect(_ => ({}), actions)(PersonChooser);
+export default ProjectChooser = connect(_ => ({}), actions)(ProjectChooser);

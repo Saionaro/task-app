@@ -1,7 +1,8 @@
 import {
    PERFORM_SEARCH_USER,
    SEARCH_USER,
-   SELECT_USER
+   SELECT_USER,
+   CLEAR_USER_SUGGEST
 } from '../constants/actions';
 
 const setChooserPending = (state, id) => {
@@ -9,7 +10,7 @@ const setChooserPending = (state, id) => {
       chooserData = newState.choosers[id];
    newState.choosers[id] = {
       pending: true,
-      persons: chooserData ? chooserData.persons : [],
+      entities: chooserData ? chooserData.entities : [],
       selected: chooserData ? chooserData.selected : null,
    };
    return newState;
@@ -20,7 +21,7 @@ const setSearchUserResult = (state, data) => {
       chooserData = newState.choosers[data.id];
    newState.choosers[data.id] = {
       pending: false,
-      persons: data.persons,
+      entities: data.entities,
       selected: chooserData ? chooserData.selected : null
    };
    return newState;
@@ -30,8 +31,19 @@ const setSelectedUser = (state, data) => {
    let newState = Object.assign({}, state);
    newState.choosers[data.chooserId] = {
       pending: false,
-      persons: [],
+      entities: [],
       selected: data.userId
+   };
+   return newState;
+};
+
+const clearSuggest = (state, chooserId) => {
+   let newState = Object.assign({}, state),
+      chooserData = newState.choosers[chooserId];
+   newState.choosers[chooserId] = {
+      pending: false,
+      entities: [],
+      selected: chooserData ? chooserData.selected : null
    };
    return newState;
 };
@@ -44,6 +56,8 @@ export default function(state = {}, action) {
          return setSearchUserResult(state, action);
       case SELECT_USER:
         return setSelectedUser(state, action);
+      case CLEAR_USER_SUGGEST:
+         return clearSuggest(state, action.chooserId);
       default:
          return state;
    }

@@ -69,6 +69,12 @@ const usersStore = {
       nickname: 'saio',
       name: 'Артем А.А.'
    },
+   23: {
+      id: 23,
+      photo: null,
+      nickname: 'savork',
+      name: 'Однозначный В.Л.'
+   },
    1233: {
       id: 1233,
       photo: null,
@@ -78,7 +84,7 @@ const usersStore = {
    123: {
       id: 123,
       photo: null,
-      nickname: 'ukr',
+      nickname: 'ukrop',
       name: 'Укропов М.Ч.'
    },
    122: {
@@ -95,13 +101,35 @@ const usersStore = {
    }
 };
 
-export default {
+const savedStore = window.localStorage.store;
+
+const reStore = store => {
+   let res = JSON.parse(savedStore),
+      tasksStore = res.task.tasksStore;
+   Object.keys(tasksStore).forEach(id => {
+      tasksStore[id].createDate = new Moment(tasksStore[id].createDate);
+      if(tasksStore[id].executionDate) {
+         tasksStore[id].executionDate = new Moment(tasksStore[id].executionDate);
+      }
+   });
+   let projectsStore = res.project.projectsStore;
+   Object.keys(projectsStore).forEach(id => {
+      projectsStore[id].createDate = new Moment(projectsStore[id].createDate);
+      if(projectsStore[id].executionDate) {
+         projectsStore[id].executionDate = new Moment(projectsStore[id].executionDate);
+      }
+   });
+   return res;
+};
+
+export default savedStore ? reStore(savedStore) : {
    modal: {
       active: {}
    },
    task: {
       tasksList: [1, 2, 3],
-      tasksStore: tasksStore
+      tasksStore: tasksStore,
+      choosers: {}
    },
    user: {
       usersStore: usersStore,
@@ -110,6 +138,7 @@ export default {
    },
    project: {
       projectsList: [1, 2],
-      projectsStore: projectsStore
+      projectsStore: projectsStore,
+      choosers: {}
    }
 };

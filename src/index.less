@@ -2,6 +2,7 @@
 @main-color: #308ca1;
 @main-blue: lighten(@main-color, 15%);
 @done-color: darken(spin(@main-blue, -15), 20%);
+@error-color: darken(spin(@main-blue, 180), 20%);
 @light-hover: lighten(@main-blue, 50%);
 @near-black: lighten(#000, 6%);
 
@@ -34,4 +35,20 @@ html {
    text-overflow: ellipsis;
    overflow: hidden;
    white-space: nowrap;
+}
+
+.button {
+   cursor: pointer;
+   background-color: #fff;
+   padding: 4px 8px;
+   display: inline-block;
+   font-size: 14px;
+
+   &__normal {
+      border: 1px solid @main-color;
+
+      &:hover {
+         color: @main-color;
+      }
+   }
 }

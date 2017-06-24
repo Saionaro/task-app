@@ -6,6 +6,8 @@ import {
 } from 'react-redux';
 import PropTypes from 'prop-types';
 import TimeView from '../TimeView/TimeView';
+import Moment from 'moment';
+import TimeDeltaView from '../TimeDeltaView/TimeDeltaView';
 import PersonPreview from '../PersonPreview/PersonPreview';
 import {
    taskListFormat
@@ -19,6 +21,7 @@ class ProjectView extends Component {
 
    static propTypes = {
       id: PropTypes.number.isRequired,
+      title: PropTypes.string,
       description: PropTypes.string,
       createDate: PropTypes.object,
       author: PropTypes.number,
@@ -30,15 +33,25 @@ class ProjectView extends Component {
       return (
          <div className="ProjectView">
             <div className="ProjectView_head">
-               <div className='ProjectView_time'>
-                  <TimeView
-                     moment={this.props.createDate}
-                     format={taskListFormat} />
+               <div className="ProjectView_title-left">
+                  <div className="ProjectView_title"
+                     title={this.props.title}>
+                     {this.props.title}
+                  </div>
+                  <div className='ProjectView_time'>
+                     <span>В работе уже</span>
+                     <TimeDeltaView
+                        fst={this.props.createDate}
+                        scd={new Moment()} />
+                  </div>
+               </div>
+               <div className="ProjectView_author">
+                  <div className="ProjectView_label">Руководитель</div>
+                  <PersonPreview
+                     id={this.props.author} />
                </div>
             </div>
             <div className="ProjectView_body">
-               <PersonPreview
-                  id={this.props.author} />
                <div className="ProjectView_description"
                   title={this.props.description}>
                   {this.props.description}
@@ -65,24 +78,35 @@ class ProjectView extends Component {
    }
 }
 
-const mapStateToProps = (state, ownProps) => ({
-   description: state.project.projectsStore[ownProps.id].description,
-   createDate: state.project.projectsStore[ownProps.id].createDate,
-   author: state.project.projectsStore[ownProps.id].author,
-   project: state.project.projectsStore[ownProps.id].project,
-   tasksList: state.project.projectsStore[ownProps.id].tasks
-                           .map(id => state.task.tasksStore[id])
-                           .sort((fst, scd) => {
-                              if(fst.executionDate && scd.executionDate) {
-                                 return 0;
-                              }
-                              if(fst.executionDate) {
-                                 return 1;
-                              } else {
-                                 return -1;
-                              }
-                           }),
-   teamList: state.project.projectsStore[ownProps.id].team.map(id => ({id}))
-});
+const mapStateToProps = (state, ownProps) => {
+   let tasksList = Object.keys(state.task.tasksStore)
+      .map(id => state.task.tasksStore[id])
+      .filter(task => {
+         return task.project === ownProps.id;
+      })
+      .sort((fst, scd) => {
+         if(fst.executionDate && scd.executionDate) {
+            return 0;
+         }
+         if(fst.executionDate) {
+            return 1;
+         } else {
+            return -1;
+         }
+      });
+   let team = tasksList.map(task => state.user.usersStore[task.executor]),
+      collapsed = team.reduce((obj, curr) => {
+         return obj[curr.id] = curr, obj;
+      }, {});
+   return {
+      description: state.project.projectsStore[ownProps.id].description,
+      title: state.project.projectsStore[ownProps.id].title,
+      createDate: state.project.projectsStore[ownProps.id].createDate,
+      author: state.project.projectsStore[ownProps.id].author,
+      project: state.project.projectsStore[ownProps.id].project,
+      tasksList: tasksList,
+      teamList: Object.keys(collapsed).map(id => collapsed[id])
+   }
+};
 
 export default ProjectView = connect(mapStateToProps, actions)(ProjectView);

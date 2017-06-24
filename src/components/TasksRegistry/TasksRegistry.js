@@ -6,8 +6,6 @@ import {
 } from 'react-redux';
 import ListView from '../ListView/ListView';
 import TextField from '../TextField/TextField';
-import PersonChooser from '../PersonChooser/PersonChooser';
-import Generator from 'random-id';
 import PropTypes from 'prop-types';
 import TasksListItem from '../TasksListItem/TasksListItem';
 import * as actions from '../../actionsFactory';
@@ -19,28 +17,25 @@ class TasksRegistry extends Component {
       tasksList: PropTypes.array,
       tasksCount: PropTypes.number
    }
+   
+   componentDidMount() {
+      this.props.markTab('tasks');
+   }
 
    onApply = (...args) => {
       this.props.addTask(...args);
    };
 
-   chooserId = Generator(6);
-
    render() {
       return (
          <div className='TasksRegistry'>
-            <TextField
-               className='TasksRegistry_new-task-button'
-               placeholder='Новая задача'
-               clearOnApply={true}
-               onApply={this.onApply} />
+            <div className='button button__normal TasksRegistry_new-task-button'
+               onClick={this.props.newTask}>+Задача</div>
             <ListView
                template={TasksListItem}
                list={this.props.tasksList}
                emptyData='У вас нет задач'
                onClick={this.props.openTask} />
-            <PersonChooser
-               chooserId={this.chooserId} />
          </div>
       );
    }

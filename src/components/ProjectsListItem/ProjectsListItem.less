@@ -2,15 +2,14 @@
 
 .ProjectsListItem {
    padding: @base-whitespace 2vw;
-   margin: @base-whitespace 2vw;
-   border: 1px solid #bbb;
    display: flex;
    justify-content: space-between;
    position: relative;
-   border-radius: 4px;
    transition: background-color .25s;
-   box-shadow: 0 0 3px #bbb;
-
+   
+   &_main-info {
+      margin-right: auto;
+   }
    &_date, &_date .TimeView {
       display: flex;
       align-items: center;
@@ -24,11 +23,13 @@
    &_title,
    &_description {
       max-width: 36vw;
-
       .text-shortcut;
+   }
+   &_description {
+      color: #bbb;
    }
    &:hover {
       cursor: pointer;
-      box-shadow: 0 0 6px darken(@light-hover, 50%);
+      background-color: lighten(@main-blue, 40%);
    }
 }

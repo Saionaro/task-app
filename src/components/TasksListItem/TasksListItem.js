@@ -22,7 +22,9 @@ export default class TasksListItem extends Component {
          <div className={'TasksListItem' + (this.props.data.executionDate ? ' TasksListItem__done' : '')}
             onClick={() => this.props.onClick(this.props.data.id)}>
             <div title='Не прочитано'
-               className={'TasksListItem_status icon-16 icon-eye' + (!this.props.data.showed ? ' TasksListItem_status__visible' : '')}>
+               className={
+                  'TasksListItem_status icon-16 icon-eye' + (!this.props.data.showed ? ' TasksListItem_status__visible' : '')
+               }>
             </div>
             <div className='TasksListItem_date'>
                <TimeView

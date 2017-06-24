@@ -18,10 +18,13 @@ import {
 } from 'react-router-dom';
 import App from './components/App/App';
 import rootReducer from './reducers/rootReducer';
-import fakeData from './initialStoreData';
+import initialData from './initialStoreData';
+import storeKeeper from './storeKeeper';
 import './index.less';
 
-const store = createStore(rootReducer, fakeData, applyMiddleware(thunk, createLogger()));
+const store = createStore(rootReducer, initialData, applyMiddleware(thunk, createLogger()));
+
+storeKeeper.keep(store);
 
 ReactDOM.render(
    <Provider store={ store }>
