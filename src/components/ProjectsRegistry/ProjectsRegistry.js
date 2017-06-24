@@ -18,9 +18,15 @@ class ProjectsRegistry extends Component {
       projectsCount: PropTypes.number
    }
 
+   componentDidMount() {
+      this.props.markTab('projects');
+   }
+
    render() {
       return (
          <div className='ProjectsRegistry'>
+            <div className='button button__normal ProjectsRegistry_new-project-button'
+               onClick={this.props.newProject}>+Проект</div>
             <ListView
                template={ProjectsListItem}
                list={this.props.projectsList}

@@ -1,35 +1,74 @@
 @import url('../../index.less');
 
 .TaskView {
-   height: 60vh;
+   max-height: 60vh;
    width: 70vw;
    
    &_head {
       display: flex;
+      align-items: center;
+      height: 40px;
+   }
+   &_title {
+      margin-left: @base-whitespace * 3;
+      font-size: 20px;
    }
    &_done-label {
       margin-left: @base-whitespace * 2;
    }
+   &_done-icon {
+      &:before {
+         color: @done-color !important;
+      }
+   }
    &_body {
       display: flex;
       justify-content: space-between;
-      margin-top: @base-whitespace * 3;
+      margin-top: @base-whitespace / 2;
+      padding: @base-whitespace * 2 @base-whitespace * 2 0 @base-whitespace * 2;
+      border-top: 1px solid #ccc;
+   }
+   &_project-area {
+      margin-left: auto;
+
+      .ProjectMiniCard {
+         cursor: pointer;
+      }
    }
    &_done-label {
       color: @done-color;
+
+      span {
+         margin-left: @base-whitespace;
+      }
    }
    &_left-part {
       flex: 1 1 auto;
       max-width: 40vw;
    }
    &_executor-area {
-      margin-top: @base-whitespace * 2;
    }
    &_executor-label {
       text-align: center;
    }
+   &_execution-block {
+      display: flex;
+      width: 100%;
+      margin-top: @base-whitespace * 2;
+
+      .TextField {
+         flex: 1 1 auto;
+      }
+   }
    &_right-part {
       flex: 0 1 auto;
       margin-left: @base-whitespace * 2;
+   }
+   &_execution-button {
+      flex: 0 1 auto;
+      margin-left: @base-whitespace * 2;
+   }
+   &_executed-text {
+      font-style: oblique;
    }
 }

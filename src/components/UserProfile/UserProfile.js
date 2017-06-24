@@ -6,11 +6,16 @@ import {
 } from 'react-redux';
 import PropTypes from 'prop-types';
 import './UserProfile.less';
+import * as actions from '../../actionsFactory';
 
-export default class UserProfile extends Component {
+class UserProfile extends Component {
 
    static propTypes = {
       id: PropTypes.number
+   }
+
+   componentDidMount() {
+      this.props.markTab('profile');
    }
 
    render() {
@@ -24,3 +29,7 @@ export default class UserProfile extends Component {
       );
    }
 }
+
+const mapStateToProps = (state, ownProps) => ({});
+
+export default UserProfile = connect(mapStateToProps, actions)(UserProfile);

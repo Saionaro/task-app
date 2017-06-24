@@ -18,27 +18,21 @@ class ProjectMiniCard extends Component {
       description: PropTypes.string,
       title: PropTypes.string,
       createDate: PropTypes.string,
-      author: PropTypes.number
+      author: PropTypes.number,
+      onClick: PropTypes.func
    }
 
    render() {
       return (
-         <div className='ProjectMiniCard'>
+         <div className='ProjectMiniCard'
+            onClick={() => this.props.onClick && this.props.onClick(this.props.id)}>
             <div className='ProjectMiniCard_title'>
-               <div className='ProjectMiniCard_title-label'
-                  title='Название проекта'>
-                  Проект:
-               </div>
                <div className='ProjectMiniCard_title-value text-shortcut'
                   title={this.props.title}>
                   {this.props.title}
                </div>
             </div>
             <div className='ProjectMiniCard_creator'>
-               <div className='ProjectMiniCard_creator-label'
-                  title='Основатель проекта'>
-                  Основатель:
-               </div>
                <div className='ProjectMiniCard_creator-value text-shortcut'>
                   <PersonTextView id={this.props.author} />
                </div>
@@ -48,11 +42,22 @@ class ProjectMiniCard extends Component {
    }
 }
 
-const mapStateToProps = (state, ownProps) => ({
-   description: state.project.projectsStore[ownProps.id].description,
-   title: state.project.projectsStore[ownProps.id].title,
-   createDate: state.project.projectsStore[ownProps.id].createDate.format(taskListFormat),
-   author: state.project.projectsStore[ownProps.id].author
-});
+// const mapStateToProps = (state, ownProps) => ({
+//    description: state.project.projectsStore[ownProps.id].description,
+//    title: state.project.projectsStore[ownProps.id].title,
+//    createDate: state.project.projectsStore[ownProps.id].createDate.format(taskListFormat),
+//    author: state.project.projectsStore[ownProps.id].author
+// });
+
+const mapStateToProps = (state, ownProps) => {
+   const item = ownProps.data || state.project.projectsStore[ownProps.id];
+   return {
+      id: item.id,
+      description: item.description,
+      title: item.title,
+      createDate: item.createDate.format(taskListFormat),
+      author: item.author
+   };
+};
 
 export default ProjectMiniCard = connect(mapStateToProps)(ProjectMiniCard);

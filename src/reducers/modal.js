@@ -2,12 +2,14 @@ import {
    OPEN_MODAL,
    CLOSE_MODAL
 } from '../constants/actions';
+import Generator from 'random-id';
 
 const openModal = (state, data) => {
    let newState = Object.assign({}, state);
-   newState.active[data.type + data.id] = {
+   newState.active[Generator(8)] = {
       id: data.id,
       type: data.type,
+      data
    };
    return newState;
 };

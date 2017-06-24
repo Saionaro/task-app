@@ -1,0 +1,30 @@
+@import url('../../index.less');
+
+.TaskEdit {
+   max-height: 60vh;
+   width: 50vw;
+   
+   &_head {
+      font-size: 25px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+   }
+   &_description {
+      margin-top: @base-whitespace * 4;
+   }
+   &_description-block {
+      margin-top: @base-whitespace * 2;
+   }
+   &_executor-block {
+      height: 58px;
+   }
+   &_body {
+      margin-top: @base-whitespace * 3;
+   }
+   &_parallel-blocks {
+      display: flex;
+      justify-content: space-between;
+      margin-top: @base-whitespace * 2;
+   }
+}

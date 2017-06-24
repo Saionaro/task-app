@@ -8,8 +8,9 @@ export default class TextField extends Component {
    
    static propTypes = {
       text: PropTypes.string,
-      onApply: PropTypes.func.isRequired,
+      onApply: PropTypes.func,
       onChange: PropTypes.func,
+      onBlur: PropTypes.func,
       onChangeDelay: PropTypes.number,
       text: PropTypes.string,
       clearOnApply: PropTypes.bool,
@@ -26,7 +27,7 @@ export default class TextField extends Component {
       const text = e.target.value.trim();
       if(e.which === 13 && text.length) {
          this.clearTimer();
-         this.props.onApply(text);
+         this.props.onApply && this.props.onApply(text);
          if (this.props.clearOnApply) {
             this.setState({
                text: ''
@@ -40,20 +41,24 @@ export default class TextField extends Component {
    };
 
    handleChange = e => {
+      const newText = e.target.value;
       this.setState({
-         text: e.target.value
+         text: newText
       });
       if(this.props.onChangeDelay && this.props.onChange) {
          this.clearTimer();
          this.timer = setTimeout(function() {
-            this.props.onChange(this.state.text);
+            this.props.onChange(newText);
             this.timer = null;
          }.bind(this), this.props.onChangeDelay);
+      } else if(this.props.onChange) {
+         this.props.onChange(newText);
       }
    };
 
-   handleBlur = e => {};
-
+   handleBlur = e => {
+      this.props.onBlur && this.props.onBlur(arguments);
+   };
 
    render() {
       const additionalClass = this.state.text.length ? ' TextField_input__editing' : '';

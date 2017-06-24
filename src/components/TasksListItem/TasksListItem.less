@@ -2,24 +2,16 @@
 
 .TasksListItem {
    padding: @base-whitespace 2vw;
-   margin: @base-whitespace 2vw;
-   border: 1px solid #bbb;
    display: flex;
    position: relative;
-   border-radius: 4px;
    transition: background-color .25s;
-   box-shadow: 0 0 3px @light-hover;
    
    &:hover {
       cursor: pointer;
-      box-shadow: 0 0 6px darken(@light-hover, 50%);
+      background-color: lighten(@main-blue, 40%);
    }
    &__done {
       color: @done-color;
-
-      &:hover {
-         box-shadow: 0 0 6px @done-color;
-      }
       &,
       &:hover {
          .TasksListItem_description {
@@ -29,6 +21,8 @@
    }
    &_status {
       position: absolute;
+      left: 0;
+      margin-left: 7px;
    }
    &_date {
       width: 8vw;
@@ -56,8 +50,5 @@
       &__visible {
          opacity: 1;
       }
-   }
-   > * + * {
-      margin-left: 2vw;
    }
 }

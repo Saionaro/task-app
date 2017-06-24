@@ -9,7 +9,11 @@
       margin: auto;
       transform: scale(.6);
       transition: transform .4s ease-in-out;
-
+      
+      &__blured {
+         transition: filter .3s;
+         filter: blur(4px);
+      }
       &.ReactModal__Content--after-open {
          transform: scale(1);
       }

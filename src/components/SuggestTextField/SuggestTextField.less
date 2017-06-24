@@ -1,0 +1,50 @@
+@import url('../../index.less');
+
+.SuggestTextField {
+   display: flex;
+   flex-direction: column;
+   align-items: stretch;
+   
+   &__selected {
+      .SuggestTextField_suggest {
+         margin-top: -1px;
+      }
+   }
+   &_cancel {
+      cursor: pointer;
+      margin-left: @base-whitespace;
+      
+      &:before {
+         color: @error-color !important;
+      }
+   }
+   &_selected-block {
+      display: flex;
+      align-items: center;
+   }
+   &_fst-line {
+      position: relative;
+   }
+   &_spinner {
+      position: absolute;
+      top: 5px;
+      right: 5px;
+   }
+   &_suggest {
+      border: 1px solid #ccc;
+      background-color: #fff;
+      position: absolute;
+      margin-top: 25px;
+      z-index: 100;
+    
+      &__empty {
+         display: none;
+      }
+      .PersonPreview {
+         width: 100%;
+      }
+   }
+   .ListView_empty-data {
+      display: none;
+   }
+}

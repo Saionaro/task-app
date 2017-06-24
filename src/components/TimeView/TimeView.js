@@ -10,7 +10,7 @@ import {
 
 Moment.locale('ru');
 
-export default class ProjectsListItem extends Component {
+export default class TimeView extends Component {
 
    static propTypes = {
       moment: PropTypes.object.isRequired,
